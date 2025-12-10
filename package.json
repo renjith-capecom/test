@@ -1,0 +1,23 @@
+{
+  "name": "react-rsc-real-poc",
+  "version": "1.0.0",
+  "description": "CVE-2025-55182 Real POC using react-server-dom-webpack@19.0.0",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "node --conditions react-server --conditions webpack src/server-realistic.js",
+    "start:legacy": "node --conditions react-server --conditions webpack src/server.js",
+    "exploit": "node exploit-rce-v4.js",
+    "exploit:all": "node exploit-all-gadgets.js",
+    "exploit:persistence": "node exploit-persistence.js"
+  },
+  "dependencies": {
+    "formidable": "^3.5.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-server-dom-webpack": "19.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
