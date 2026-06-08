@@ -1,0 +1,45 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    # 1. Get code
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. Setup Python
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    # 3. Install dependencies
+    - name: Install pytest
+      run: pip install pytest
+
+    # 4. Secret scanning
+    - name: Gitleaks
+      uses: gitleaks/gitleaks-action@v2
+
+    # 5. SAST scan
+    - name: Semgrep
+      uses: returntocorp/semgrep-action@v1
+
+    # 6. Dependency scan
+    - name: Trivy scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: fs
+        scan-ref: .
+
+    # 7. Run tests
+    - name: Run tests
+      run: pytest
