@@ -14,7 +14,7 @@
     "formidable": "^3.5.4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-server-dom-webpack": "19.0.0"
+    "react-server-dom-webpack": "19.0.8"
   },
   "devDependencies": {
     "webpack": "^5.89.0",
